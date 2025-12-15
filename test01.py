@@ -57,12 +57,12 @@ if ingredients_list and name_on_order:
                    cursor=conn.cursor()
                    cursor.execute("""INSERT INTO SMOOTHIES.PUBLIC.ORDERS(ingredients, name_on_order)
                                       values ($s,$s)""",
-      (ingredients_string, name_on_order)
+         (ingredients_string, name_on_order)
                                  )
                   cursor.close()
 
  
-        st.success(f'Your Smoothie is ordered, {name_on_order}!', icon="✅")
+      st.success(f'Your Smoothie is ordered, {name_on_order}!', icon="✅")
 
 
 
