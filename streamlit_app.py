@@ -5,9 +5,7 @@ import streamlit as st
 import pandas as pd
 import snowflake.connector
 import requests
-smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-#st.text(smoothiefroot_response)
-sf_df=st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
+
 
 # Write directly to the app
 st.title(f"🥤 Customize your smoothie :cup_with_straw: {st.__version__}")
@@ -49,6 +47,9 @@ ingredients_list = st.multiselect (
     ,max_selections= 5
 )
 
+smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+#st.text(smoothiefroot_response)
+sf_df=st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
 
 if ingredients_list and name_on_order:
     ingredients_string = "".join(ingredients_list)
