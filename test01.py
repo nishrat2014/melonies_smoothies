@@ -46,22 +46,21 @@ ingredients_list = st.multiselect (
     ,max_selections= 5
 )
 
+
 if ingredients_list and name_on_order:
+    ingredients_string = "".join(ingredients_list)
 
-    #st.write(ingredients_list)
-    #st.text(ingredients_list)
+    if st.button("Submit Order"):
+        cursor = conn.cursor()
+        cursor.execute(
+            """INSERT INTO SMOOTHIES.PUBLIC.ORDERS(ingredients, name_on_order)
+               VALUES (%s, %s)""",
+            (ingredients_string, name_on_order)
+        )
+        cursor.close()
 
-   ingredients_string="".join(ingredients_list)
+        st.success(f'Your Smoothie is ordered, {name_on_order}!', icon="✅")
 
-      if st.button("Submit Order"):
-                   cursor=conn.cursor()
-                   cursor.execute("""INSERT INTO SMOOTHIES.PUBLIC.ORDERS(ingredients, name_on_order)
-                                      values ($s,$s)""",
-         (ingredients_string, name_on_order)
-                                 )
-                  cursor.close()
-
- st.success(f'Your Smoothie is ordered, {name_on_order}!', icon="✅")
 
 
 
