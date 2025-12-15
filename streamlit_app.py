@@ -7,7 +7,7 @@ import snowflake.connector
 import requests
 smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
 #st.text(smoothiefroot_response)
-sf_df=st.dataframe(data=smoothifroot_response.jason(), use_container_width=true)
+sf_df=st.dataframe(data=smoothifroot_response.json(), use_container_width=true)
 
 # Write directly to the app
 st.title(f"🥤 Customize your smoothie :cup_with_straw: {st.__version__}")
