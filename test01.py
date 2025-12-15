@@ -42,7 +42,7 @@ df = pd.read_sql("SELECT FRUIT_NAME FROM FRUIT_OPTIONS", conn)
 
 ingredients_list = st.multiselect (
     'Chose upto 5 ingredeitns:'
-    ,df["FRUIT_NAME"].TOLIST()
+    ,df["FRUIT_NAME"].tolist()
     ,max_selections= 5
 )
 
