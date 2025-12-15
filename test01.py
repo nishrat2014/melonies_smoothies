@@ -53,7 +53,7 @@ if ingredients_list and name_on_order:
 
    ingredients_string="".join(ingredients_list)
 
-      if st.button("Submit Order::
+      if st.button("Submit Order:
                    cursor=conn.cursor()
                    cursor.execute("""INSERT INTO SMOOTHIES.PUBLIC.ORDERS(ingredients, name_on_order)
                                       values ($s,$s)""",
