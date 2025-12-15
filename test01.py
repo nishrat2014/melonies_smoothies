@@ -61,8 +61,7 @@ if ingredients_list and name_on_order:
                                  )
                   cursor.close()
 
- 
-      st.success(f'Your Smoothie is ordered, {name_on_order}!', icon="✅")
+ st.success(f'Your Smoothie is ordered, {name_on_order}!', icon="✅")
 
 
 
