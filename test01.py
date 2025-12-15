@@ -35,7 +35,7 @@ warehouse=st.secrets["snowflake"]["warehouse"],
 database=st.secrets["snowflake"]["database"],
 
 schema=st.secrets["snowflake"]["schema"],
-
+)
 # Get fruit options
 df = pd.read_sql("SELECT FRUIT_NAME FROM FRUIT_OPTIONS", conn)
 
