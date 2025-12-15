@@ -41,18 +41,20 @@ schema=st.secrets["snowflake"]["schema"],
 df = pd.read_sql("SELECT FRUIT_NAME FROM FRUIT_OPTIONS", conn)
 
 
+
+smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+#st.text(smoothiefroot_response)
+sf_df=st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
+
+
 ingredients_list = st.multiselect (
     'Chose upto 5 ingredeitns:'
     ,df["FRUIT_NAME"].tolist()
     ,max_selections= 5
 )
 
-smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-#st.text(smoothiefroot_response)
-sf_df=st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
-
 if ingredients_list and name_on_order:
-    ingredients_string = "".join(ingredients_list)
+    ingredients_string = "".join(ingredients_list+''+df)
 
     if st.button("Submit Order"):
         cursor = conn.cursor()
