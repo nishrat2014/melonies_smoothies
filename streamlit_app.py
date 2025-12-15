@@ -47,7 +47,7 @@ ingredients_list = st.multiselect (
 )
 
 
-smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon"+ingredients_list)
 #st.text(smoothiefroot_response)
 sf_df=st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
 
