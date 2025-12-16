@@ -60,7 +60,7 @@ for fruit_chosen in ingredients_list:
     st.subheader(f"{fruit_chosen} nutrition information")
 
     # Call API for that fruit
-    response = requests.get(f"https://my.smoothiefroot.com/api/fruit/{fruit_chosen.lower()}")
+    response = requests.get(f"https://my.smoothiefroot.com/api/fruit/{search_on.lower()}")
     if response.status_code == 200:
         fruit_json = response.json()
         
