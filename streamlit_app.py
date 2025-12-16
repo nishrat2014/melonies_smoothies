@@ -42,19 +42,21 @@ df = pd.read_sql("SELECT FRUIT_NAME, SEARCH_ON FROM FRUIT_OPTIONS", conn)
 #st.dataframe(data=df,  use_container_width=True)
 #st.stop()
 
-
-
 ingredients_list = st.multiselect (
     'Chose upto 5 ingredeitns:'
     ,df["FRUIT_NAME"].tolist()
     ,max_selections= 5
 )
 
-
 # Loop through each selected fruit
 for fruit_chosen in ingredients_list:
 
     search_on = df.loc[df['FRUIT_NAME'] == fruit_chosen, 'SEARCH_ON'].iloc[0]
+
+    if pd.isna(search_on) or not search_on:
+    st.warning(f"No search value found for {fruit_chosen}, skipping API call.")
+    continue  # skip this fruit
+  
     st.write('The search value for ', fruit_chosen, ' is ', search_on, '.')
     # Show subheader
     st.subheader(f"{fruit_chosen} nutrition information")
