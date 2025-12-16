@@ -53,7 +53,7 @@ for fruit_chosen in ingredients_list:
 
     search_on = df.loc[df['FRUIT_NAME'] == fruit_chosen, 'SEARCH_ON'].iloc[0]
 
-      if pd.isna(search_on) or not search_on:
+    if pd.isna(search_on) or not search_on:
       st.warning(f"No search value found for {fruit_chosen}, skipping API call.")
       continue  # skip this fruit
   
