@@ -40,7 +40,13 @@ schema=st.secrets["snowflake"]["schema"],
 # Get fruit options
 df = pd.read_sql("SELECT FRUIT_NAME, SEARCH_ON FROM FRUIT_OPTIONS", conn)
 st.dataframe(data=df,  use_container_width=True)
+
+#convert the snowspark dataframe to a pandas dataframe so we can use the LOC function
+pd_df=df.to_pandas()
+st.dataframe(pd_df)
 st.stop()
+
+
 
 ingredients_list = st.multiselect (
     'Chose upto 5 ingredeitns:'
