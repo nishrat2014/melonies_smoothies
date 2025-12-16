@@ -81,7 +81,7 @@ for fruit_chosen in ingredients_list:
             })
 
         # Convert to DataFrame and display
-        sf_df = pd.DataFrame(rows).set_index("")
+        sf_df = pd.DataFrame(rows).set_index("nutrient")
         st.dataframe(sf_df, use_container_width=True)
 
 
