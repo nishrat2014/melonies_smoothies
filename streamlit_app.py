@@ -81,8 +81,8 @@ for fruit_chosen in ingredients_list:
             })
 
         # Convert to DataFrame and display
-       sf_df = pd.DataFrame(rows).reset_index(drop=True)
-       st.dataframe(sf_df, use_container_width=True)
+         sf_df = pd.DataFrame(rows).reset_index(drop=True)
+         st.dataframe(sf_df, use_container_width=True)
 
 
 
