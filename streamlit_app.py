@@ -47,11 +47,32 @@ ingredients_list = st.multiselect (
 )
 
 
-smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-#st.text(smoothiefroot_response)
-sf_df=st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
-st.subheader(ingredients_list+'nutrition information')
-st.write(smoothiefroot_response.json())
+# Loop through each selected fruit
+for fruit_chosen in ingredients_list:
+    # Show subheader
+    st.subheader(f"{fruit_chosen} nutrition information")
+
+    # Call API for that fruit
+    response = requests.get(f"https://my.smoothiefroot.com/api/fruit/{fruit_chosen.lower()}")
+    if response.status_code == 200:
+        fruit_json = response.json()
+
+        # Flatten JSON into a row
+        flat_data = {
+            "nutrition": fruit_json.get("nutrition"),
+            "id": fruit_json.get("id"),
+            "name": fruit_json.get("name"),
+            "family": fruit_json.get("family"),
+            "order": fruit_json.get("order"),
+            "genus": fruit_json.get("genus"),
+           
+        }
+
+        # Convert to DataFrame and display
+        sf_df = pd.DataFrame([flat_data])
+        st.dataframe(sf_df, use_container_width=True)
+    else:
+        st.warning(f"Could not fetch data for {fruit_chosen}")
 
 
 if ingredients_list and name_on_order:
