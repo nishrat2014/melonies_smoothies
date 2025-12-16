@@ -53,6 +53,9 @@ ingredients_list = st.multiselect (
 
 # Loop through each selected fruit
 for fruit_chosen in ingredients_list:
+
+    search_on=pd_df.loc[pd_df['FRUIT_NAME'] == fruit_chosen, 'SEARCH_ON'].iloc[0]
+    st.write('The search value for ', fruit_chosen,' is ', search_on, '.')
     # Show subheader
     st.subheader(f"{fruit_chosen} nutrition information")
 
