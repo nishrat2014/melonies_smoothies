@@ -56,23 +56,24 @@ for fruit_chosen in ingredients_list:
     response = requests.get(f"https://my.smoothiefroot.com/api/fruit/{fruit_chosen.lower()}")
     if response.status_code == 200:
         fruit_json = response.json()
-        st.write(fruit_json)
-        # Flatten JSON into a row
-        flat_data = {
-            "nutrition": fruit_json.get("nutrition"),
-            "id": fruit_json.get("id"),
-            "name": fruit_json.get("name"),
-            "family": fruit_json.get("family"),
-            "order": fruit_json.get("order"),
-            "genus": fruit_json.get("genus"),
-           
-        }
+        
+       
+        # Build rows: one row per nutrient
+        rows = []
+        for nutrient, value in fruit_json.get("nutrition", {}).items():
+            rows.append({
+                "": nutrient,  # first column has no header
+                "family": fruit_json.get("family"),
+                "genus": fruit_json.get("genus"),
+                "id": fruit_json.get("id"),
+                "name": fruit_json.get("name"),
+                "nutrition": value,
+                "order": fruit_json.get("order"),
+            })
 
         # Convert to DataFrame and display
-        sf_df = pd.DataFrame([flat_data])
+        sf_df = pd.DataFrame(rows)
         st.dataframe(sf_df, use_container_width=True)
-    else:
-        st.warning(f"Could not fetch data for {fruit_chosen}")
 
 
 if ingredients_list and name_on_order:
