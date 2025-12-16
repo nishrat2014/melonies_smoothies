@@ -56,7 +56,7 @@ for fruit_chosen in ingredients_list:
     response = requests.get(f"https://my.smoothiefroot.com/api/fruit/{fruit_chosen.lower()}")
     if response.status_code == 200:
         fruit_json = response.json()
-
+        st.write(fruit_json)
         # Flatten JSON into a row
         flat_data = {
             "nutrition": fruit_json.get("nutrition"),
