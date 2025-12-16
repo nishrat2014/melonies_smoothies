@@ -69,16 +69,33 @@ for fruit_chosen in ingredients_list:
        
         # Build rows: one row per nutrient
         rows = []
-        for nutrient, value in fruit_json.get("nutrition", {}).items():
+        nutrition = fruit_json.get("nutrition")
+        
+        if nutrition:
+            # Build rows for each nutrient
+            for nutrient, value in nutrition.items():
+                rows.append({
+                    "nutrient": nutrient,
+                    "family": fruit_json.get("family"),
+                    "genus": fruit_json.get("genus"),
+                    "id": fruit_json.get("id"),
+                    "name": fruit_json.get("name"),
+                    "nutrition": value,
+                    "order": fruit_json.get("order"),
+                })
+        else:
+            # No nutrition data available
             rows.append({
-                "": nutrient,  # first column has no header
+                "nutrient": "N/A",
                 "family": fruit_json.get("family"),
                 "genus": fruit_json.get("genus"),
                 "id": fruit_json.get("id"),
                 "name": fruit_json.get("name"),
-                "nutrition": value,
+                "nutrition": "Not available",
                 "order": fruit_json.get("order"),
             })
+        
+
 
         # Convert to DataFrame and display
         sf_df = pd.DataFrame(rows).reset_index(drop=True)
