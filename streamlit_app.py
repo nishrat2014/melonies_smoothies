@@ -39,8 +39,8 @@ schema=st.secrets["snowflake"]["schema"],
 )
 # Get fruit options
 df = pd.read_sql("SELECT FRUIT_NAME, SEARCH_ON FROM FRUIT_OPTIONS", conn)
-st.dataframe(data=df,  use_container_width=True)
-st.stop()
+#st.dataframe(data=df,  use_container_width=True)
+#st.stop()
 
 
 
